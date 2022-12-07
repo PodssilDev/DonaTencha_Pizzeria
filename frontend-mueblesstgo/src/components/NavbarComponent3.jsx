@@ -10,13 +10,10 @@ function NavbarComponent3(){
                 <div class="logo">
                     <h1>Doña Tencha</h1>
                 </div>
-                <div class = "imageLogo">
-                    <img src = {logo} alt = "" height="70" width = "70"></img>
-                    </div>
                 <nav>
                 </nav>
                 <a class="btn" href="/"><button>Homepage</button></a>
-                <a class="btn" href="/"><button>Menú</button></a>
+                <a class="btn" href="/menu"><button>Menú</button></a>
                 <a class="btn" href="/"><button>Arma tu Pizza</button></a>
                 <a class="btn" href="/"><button>Mi carrito</button></a>
             </header>
