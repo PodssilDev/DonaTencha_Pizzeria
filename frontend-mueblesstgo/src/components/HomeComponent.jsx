@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components'
 import productos from "./jsons/products.json";
@@ -8,8 +9,20 @@ import logo from "../imgs/logo.png"
 import Carrousel from "../components/Carrousel";
 import delivery from "../imgs/delivery.png";
 import Footer from "../components/Footer";
+import Product from "./ProductComponent";
+import add_to_cart from "../components/Carrito/add_to_cart";
 
 export default function Home(){
+
+    const [cart, setCart] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []);
+
+    const add = (id, nombre, descripcion, precio, img) =>{
+        console.log(cart)
+        console.log(nombre)
+        setCart(add_to_cart({id, nombre, descripcion, precio, img}));
+        console.log(cart);
+    }
+
     return(
         <div>
             <GlobalStyle />
@@ -22,48 +35,9 @@ export default function Home(){
             </br>
             <h1 className="text-center"> <b>Nuevos en el menú:</b></h1>
             <div class="box-area">
-                    <div class="single-box" key = {productos[3].id}>
-                            <div class="img-area">
-                                <img src = {productos[3].img} width = "150" height = "160" alt = "" ></img>
-                            </div>
-                        <div class="img-text">
-                            <span class="header-text"><strong>{productos[3].nombre}</strong></span>
-                            <br></br>
-                            <span >{productos[3].descripcion}</span>
-                            <br></br>
-                            <span ><strong>{productos[3].precio}</strong></span>
-                            <br></br>
-                            <button varian="primary">Añadir al carrito </button>
-                        </div>
-                    </div>
-                    <div class="single-box" key = {productos[4].id}>
-                            <div class="img-area">
-                                <img src = {productos[4].img} width = "150" height = "160" alt = "" ></img>
-                            </div>
-                        <div class="img-text">
-                            <span class="header-text"><strong>{productos[4].nombre}</strong></span>
-                            <br></br>
-                            <span >{productos[4].descripcion}</span>
-                            <br></br>
-                            <span ><strong>{productos[4].precio}</strong></span>
-                            <br></br>
-                            <button varian="primary">Añadir al carrito </button>
-                        </div>
-                    </div>
-                    <div class="single-box" key = {productos[5].id}>
-                            <div class="img-area">
-                                <img src = {productos[5].img} width = "150" height = "160" alt = "" ></img>
-                            </div>
-                        <div class="img-text">
-                            <span class="header-text"><strong>{productos[5].nombre}</strong></span>
-                            <br></br>
-                            <span >{productos[5].descripcion}</span>
-                            <br></br>
-                            <span ><strong>{productos[5].precio}</strong></span>
-                            <br></br>
-                            <button varian="primary">Añadir al carrito </button>
-                        </div>
-                    </div>
+            <Product id={productos[3].id} nombre={productos[3].nombre} descripcion={productos[3].descripcion} precio={productos[3].precio} img={productos[3].img} add={() => add(productos[3].id, productos[3].nombre, productos[3].descripcion, productos[3].precio, productos[3].img)}></Product>
+            <Product id={productos[4].id} nombre={productos[4].nombre} descripcion={productos[4].descripcion} precio={productos[4].precio} img={productos[4].img} add={() => add(productos[4].id, productos[4].nombre, productos[4].descripcion, productos[4].precio, productos[4].img)}></Product>
+            <Product id={productos[5].id} nombre={productos[5].nombre} descripcion={productos[5].descripcion} precio={productos[5].precio} img={productos[5].img} add={() => add(productos[5].id, productos[5].nombre, productos[5].descripcion, productos[5].precio, productos[5].img)}></Product>
                     
                 </div>
                 <div className = "menu">
@@ -90,7 +64,7 @@ const GlobalStyle = createGlobalStyle`
 const HomeStyle = styled.nav`
 
 .carrousel{
-    padding-top: 8px;
+    padding-top: 60px;
 }
 
 .text-center {

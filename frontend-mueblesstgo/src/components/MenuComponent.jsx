@@ -1,13 +1,36 @@
 import React, { Component } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components'
 import productos from "./jsons/products.json";
 import NavbarComponent3 from "./NavbarComponent3";
 import Button from 'react-bootstrap/Button';
 import Footer from "../components/Footer";
-
+import add_to_cart from "../components/Carrito/add_to_cart";
+import remove_cart from "../components/Carrito/remove_cart";
+import remove_from_cart from "../components/Carrito/remove_from_cart";
+import Product from "./ProductComponent";
 
 export default function Menu(){
+
+    const [cart, setCart] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []);
+
+    const add = (id, nombre, descripcion, precio, img) =>{
+        console.log(cart)
+        console.log(nombre)
+        setCart(add_to_cart({id, nombre, descripcion, precio, img}));
+        console.log(cart);
+    }
+
+    const deleteCart = () =>{
+        setCart(remove_cart());
+        console.log(cart);
+    }
+
+    const cInfo = () =>{
+        console.log(cart);
+    }
+
     return (
         <div>
             <GlobalStyle />
@@ -16,23 +39,12 @@ export default function Menu(){
                 <h1 className="text-center"> <b>Menú - ¿Que vas a querer?</b></h1>
                 <div class="box-area">
                 {productos.map(products => {
-                            return (
-                    <div class="single-box" key = {products.id}>
-                            <div class="img-area">
-                                <img src = {products.img} width = "150" height = "160" alt = "" ></img>
-                            </div>
-                        <div class="img-text">
-                            <span class="header-text"><strong>{products.nombre}</strong></span>
-                            <br></br>
-                            <span >{products.descripcion}</span>
-                            <br></br>
-                            <span ><strong>{products.precio}</strong></span>
-                            <br></br>
-                            <button varian="primary">Añadir al carrito </button>
-                        </div>
-                    </div>
+                    return(
+                                    <Product id={products.id} nombre={products.nombre} descripcion={products.descripcion} precio={products.precio} img={products.img} add={() => add(products.id, products.nombre, products.descripcion, products.precio, products.img)}></Product>
                             );})}
                 </div>
+                <button onClick = {deleteCart}></button>
+                <button onClick = {cInfo}></button>
             </HomeStyle>
             <Footer></Footer>
 
@@ -51,7 +63,7 @@ const HomeStyle = styled.nav`
 .text-center {
     text-align: center;
     justify-content: center;
-    padding-top: 8px;
+    padding-top: 100px;
     color: #fff;
 }
 

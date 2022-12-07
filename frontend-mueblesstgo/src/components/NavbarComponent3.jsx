@@ -1,35 +1,59 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../imgs/logo.png"
+import {useState, useEffect} from "react";
 
-function NavbarComponent3(){
+export default function NavbarComponent3(){
+  const [sticky, setSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setSticky(window.scrollY > 400);
+      console.log(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
     return(
-        <>
-        <NavStyle>
+      <NavStyle>
+        <nav className={`${sticky ? "sticky" : ""}`}>
             <header class="header">
                 <div class="logo">
                     <h1>Doña Tencha</h1>
                 </div>
-                <nav>
-                </nav>
                 <a class="btn" href="/"><button>Homepage</button></a>
                 <a class="btn" href="/menu"><button>Menú</button></a>
                 <a class="btn" href="/"><button>Arma tu Pizza</button></a>
                 <a class="btn" href="/"><button>Mi carrito</button></a>
             </header>
+            </nav>
             </NavStyle>
-        </>
+        
     )
 }
 
-export default NavbarComponent3;
 
 
 const NavStyle = styled.nav`
+
+nav {
+  position: fixed;
+  top: 0;
+  z-index: 99999;
+  width: 100%;
+  
+}
+nav.sticky {
+  position: fixed;
+  top: 0;
+  z-index: 99999;
+  width: 100%;
+}
 .header{
     background-color: #DC7633;
     display: flex;
     justify-content: flex-end;
+
     align-items: center;
     height: 85px;
     padding: 5px 10%;
@@ -58,4 +82,5 @@ const NavStyle = styled.nav`
     color: #ffbc0e;
     transform: scale(1.1);
   }
+
 `
