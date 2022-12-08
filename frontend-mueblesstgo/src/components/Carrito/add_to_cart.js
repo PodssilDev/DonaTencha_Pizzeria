@@ -1,7 +1,8 @@
 
 // Función que crea el carrito en localstorage
 const create_cart = (object) => {
-  localStorage.setItem("cart", JSON.stringify({items: [{...object, quantity: 1}]}));
+  localStorage.setItem("cart", JSON.stringify({items: [{...object, quantity: 1}]}))
+
 }
 
 // Función que añade un item al carrito, si no existe se añade, si ya existe se suma 1 a quantity

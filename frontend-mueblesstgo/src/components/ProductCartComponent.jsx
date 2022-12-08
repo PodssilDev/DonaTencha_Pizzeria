@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
-export default function Product({id, img, nombre, descripcion, precio, add}) {
+export default function ProductCart({id, img, nombre, descripcion, precio, cantidad, add, remove_item,}) {
+    
     return (
         <HomeStyle>
             <div class="single-box" key={id}>
@@ -11,11 +11,15 @@ export default function Product({id, img, nombre, descripcion, precio, add}) {
                 <div class="img-text">
                     <span class="header-text"><strong>{nombre}</strong></span>
                     <br></br>
-                    <span >{descripcion}</span>
+                    <span>Cantidad: {cantidad}</span>
                     <br></br>
-                    <span ><strong>{"$" + Intl.NumberFormat().format(precio)}</strong></span>
+                    <span ><strong>{"$" + Intl.NumberFormat().format(precio * cantidad)}</strong></span>
                     <br></br>
-                    <button varian="primary" onClick={add}>Añadir al carrito </button>
+                    <button varian="primary" onClick={add}>+1 unidad </button>
+                    <br></br>
+                    <button varian="primary" onClick={remove_item}>-1 unidad</button>
+                    
+                    
                 </div>
             </div>
         </HomeStyle>

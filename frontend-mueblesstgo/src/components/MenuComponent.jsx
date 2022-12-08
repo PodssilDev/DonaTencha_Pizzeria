@@ -10,21 +10,21 @@ import add_to_cart from "../components/Carrito/add_to_cart";
 import remove_cart from "../components/Carrito/remove_cart";
 import remove_from_cart from "../components/Carrito/remove_from_cart";
 import Product from "./ProductComponent";
+import add_to_price from "./Carrito/add_to_price";
 
 export default function Menu(){
 
     const [cart, setCart] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []);
+    const[price, setPrice] = useState(localStorage.getItem("price") ?  JSON.parse(localStorage.getItem("price")) : []);
+
 
     const add = (id, nombre, descripcion, precio, img) =>{
-        console.log(cart)
-        console.log(nombre)
         setCart(add_to_cart({id, nombre, descripcion, precio, img}));
-        console.log(cart);
+        setPrice(add_to_price(precio));
     }
 
     const deleteCart = () =>{
         setCart(remove_cart());
-        console.log(cart);
     }
 
     const cInfo = () =>{
