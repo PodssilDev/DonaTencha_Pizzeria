@@ -15,7 +15,7 @@ import add_to_price from "./Carrito/add_to_price";
 export default function Menu(){
 
     const [cart, setCart] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []);
-    const[price, setPrice] = useState(localStorage.getItem("price") ?  JSON.parse(localStorage.getItem("price")) : []);
+    const[price, setPrice] = useState(localStorage.getItem("price") ? (localStorage.getItem("price")) : 0);
 
 
     const add = (id, nombre, descripcion, precio, img) =>{

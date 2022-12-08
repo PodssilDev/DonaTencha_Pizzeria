@@ -1,16 +1,16 @@
-const create_price = () => {
-    localStorage.setItem("price", JSON.stringify({price: [{...0}]}));
+const create_price = (precio) => {
+    localStorage.setItem("price", precio);
   }
 
 
 export default function add_to_price(precio) {
     if(!localStorage.getItem("price")) { 
-      create_price();
+      create_price(precio);
     }
     else { 
-      const price = JSON.parse(localStorage.getItem("price"));
-        price.price += precio;
-      localStorage.setItem("price", JSON.stringify(price));
+      let price = Number(localStorage.getItem("price"));
+       price += precio;
+      localStorage.setItem("price", price);
     }
-    return JSON.parse(localStorage.getItem("price")).price;
+    return localStorage.getItem("price");
   }

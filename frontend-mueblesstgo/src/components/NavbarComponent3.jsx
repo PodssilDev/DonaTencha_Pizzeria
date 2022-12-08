@@ -10,6 +10,7 @@ import ProductCartComponent from "./ProductCartComponent";
 import Button from 'react-bootstrap/Button';
 import sinProductos from "../imgs/sinProductos.png";
 import add_to_price from "../components/Carrito/add_to_price";
+import remove_price from "../components/Carrito/remove_price";
 
 export default function NavbarComponent3(){
   const [show, setShow] = useState(false);
@@ -17,15 +18,17 @@ export default function NavbarComponent3(){
     
     const [cart, setCart] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []);
 
-    const[price, setPrice] = useState(localStorage.getItem("price") ?  JSON.parse(localStorage.getItem("price")) : 2);
+    const[price, setPrice] = useState(localStorage.getItem("price") ? (localStorage.getItem("price")) : 0);
 
     const add = (id, nombre, descripcion, precio, img) =>{
         setCart(add_to_cart({id, nombre, descripcion, precio, img}));
+        console.log(precio);
         setPrice (add_to_price(precio));
     }
 
-    const remove_i = (id) =>{
+    const remove_i = (id, precio) =>{
         setCart(remove_from_cart(id, false));
+        setPrice(remove_price(precio));
     }
     
 
@@ -48,8 +51,8 @@ export default function NavbarComponent3(){
                   
             <div className = "carrito1">
               <h1> <b><i>Mi carrito</i></b></h1>
-              {cart.length !== 0 ? <h2>Total: ${price[0]}</h2>  : <></>}
-              {cart.length !== 0 ? <a class="btn" href="/pagar"><button>Ir a la vista de pago</button></a> : <></>}
+              {cart.length !== 0 ? <h2>Total: ${price}</h2>  : <></>}
+              {cart.length !== 0 ? <a class="btn" href="/confirmar-compra"><button>Ir a confirmar la compra</button></a> : <></>}
             {cart.length === 0 ? 
             <>
             <img src = {sinProductos} alt = ""></img>
@@ -61,7 +64,7 @@ export default function NavbarComponent3(){
             cart.items.map(itemm => {
                 return(
                     <>
-                    <ProductCartComponent id={itemm.id} nombre={itemm.nombre} precio={itemm.precio} img={itemm.img} cantidad = {itemm.quantity} add={() => add(itemm.id, itemm.nombre, itemm.descripcion, itemm.precio, itemm.img)} remove_item = {() => remove_i(itemm.id)}></ProductCartComponent>
+                    <ProductCartComponent id={itemm.id} nombre={itemm.nombre} precio={itemm.precio} img={itemm.img} cantidad = {itemm.quantity} add={() => add(itemm.id, itemm.nombre, itemm.descripcion, itemm.precio, itemm.img)} remove_item = {() => remove_i(itemm.id, itemm.precio)}></ProductCartComponent>
                     
                         </>
                         

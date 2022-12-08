@@ -7,6 +7,7 @@ import add_to_cart from "../components/Carrito/add_to_cart";
 import remove_cart from "../components/Carrito/remove_cart";
 import remove_from_cart from "../components/Carrito/remove_from_cart";
 import ProductCartComponent from "./ProductCartComponent";
+import Form from 'react-bootstrap/Form';
 export default function Test(){
     const [show, setShow] = useState(false);
 
@@ -44,6 +45,15 @@ export default function Test(){
             </div>
             </Drawer>
             {cart.items[0].nombre}
+            <Form.Group className="mb-3" controlId="fecha">
+                                        <Form.Label>Seleccione el % de propina</Form.Label>
+                                        <br></br>
+                                        <Form.Select>
+        <option>0%</option>
+        <option>5%</option>
+        <option>10%</option>
+      </Form.Select>
+                                        </Form.Group>
         </div>
         
     );
