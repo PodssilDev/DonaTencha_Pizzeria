@@ -41,7 +41,7 @@ export default function Home(){
                     
                 </div>
                 <div className = "menu">
-                <button varian="primary">Revisa nuestro menú</button>
+                <a href = "/menu"><button varian="primary">Revisa nuestro menú</button></a>
                 </div>
                 <br></br>
                     <hr></hr>

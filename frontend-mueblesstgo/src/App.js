@@ -12,6 +12,7 @@ import { ReactKeycloakProvider } from '@react-keycloak/web'
 import keycloak from './keycloak'
 import TestComponent from './components/TestComponent';
 import ConfirmarCompraComponent from './components/ConfirmarCompraComponent';
+import PagoComponent from './components/PagoComponent';
 function App() {
   return (
     <div>
@@ -28,6 +29,7 @@ function App() {
         <Route path= "/planilla-sueldos" element={<SueldosComponent />} />
         <Route path= "/test" element={<TestComponent />} />
         <Route path= "/confirmar-compra" element={<ConfirmarCompraComponent />} />
+        <Route path= "/pago" element={<PagoComponent />} />
 
       </Routes>
     </BrowserRouter>

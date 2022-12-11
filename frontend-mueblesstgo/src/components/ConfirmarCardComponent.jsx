@@ -11,6 +11,8 @@ export default function ConfirmarCardComponent({id, img, nombre, descripcion, pr
                 <div class="img-text">
                     <span class="header-text"><strong>{nombre}</strong></span>
                     <br></br>
+                    <span >{descripcion}</span>
+                    <br></br>
                     <span>Cantidad: {cantidad}</span>
                     <br></br>
                     <span ><strong>{"$" + Intl.NumberFormat().format(precio * cantidad)}</strong></span>

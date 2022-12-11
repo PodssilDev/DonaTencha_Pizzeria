@@ -52,14 +52,14 @@ export default function ConfirmarCompra(){
         <GlobalStyle />
         <HomeStyle>
         <h1 className="text-center"> <b>Mi carrito de compras</b></h1>
+        <h2 className = "text-center2"><u>Total a pagar: ${price}</u></h2>
         <div className = "separacion">
         <div className = "box-area">
-        <h2 className = "text-center2">Total a pagar: ${price}</h2>
         {cart.items.map(itemm => {
                 return(
                    
                     
-        <ConfirmarCardComponent id={itemm.id} nombre={itemm.nombre} precio={itemm.precio} img={itemm.img} cantidad = {itemm.quantity} add={() => add(itemm.id, itemm.nombre, itemm.descripcion, itemm.precio, itemm.img)} remove_item = {() => remove_i(itemm.id, itemm.precio)}></ConfirmarCardComponent>
+        <ConfirmarCardComponent id={itemm.id} nombre={itemm.nombre} descripcion = {itemm.descripcion} precio={itemm.precio} img={itemm.img} cantidad = {itemm.quantity} add={() => add(itemm.id, itemm.nombre, itemm.descripcion, itemm.precio, itemm.img)} remove_item = {() => remove_i(itemm.id, itemm.precio)}></ConfirmarCardComponent>
        
         );
         })}
@@ -103,11 +103,14 @@ export default function ConfirmarCompra(){
         <option>Av. Victor Jara, 3524</option>
         <option>Av. Tingeso, 1312</option>
       </Form.Select>
-                                        </Form.Group> <Button className="boton">Continuar con la compra</Button> </> : null}
+      <br></br>
+      Su pedido estara listo en: {Math.round(Math.random()*100)} minutos
+                                        </Form.Group> <Button className="boton">Ir a pagar</Button> </> : null}
                                 {show2 == "despacho" ?            <><Form.Group className="mb-2" controlId="fecha">
                                         <Form.Label>Ingrese su dirección de despacho</Form.Label>
                                         <Form.Control type="fecha" placeholder="Ingrese su dirección de despacho"  required/>
-                                        </Form.Group><Button className="boton">Continuar con la compra</Button> </> : null}
+                                        Su pedido estará listo en: {Math.round(Math.random()*100)} minutos
+                                        </Form.Group><Button className="boton">Ir a pagar</Button> </> : null}
                                 
                             </div>
                         </div>
@@ -117,6 +120,7 @@ export default function ConfirmarCompra(){
         </div>
          </HomeStyle>
          <Footer></Footer>
+         
         </div>
         
     )
