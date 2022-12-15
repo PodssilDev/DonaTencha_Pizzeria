@@ -24,12 +24,13 @@ export default function Confirmacion(){
                             <div className="formcontainer">
                                 <hr></hr>
                                 <div className="container">
-                                    <h4 className = "text-center">Solo debe terminar el proceso de pago en la página de Webpay y su pedido estará confirmado.</h4>
+                                    <h4 className = "text-center">Solo debe terminar el proceso de pago en la <b>página de Webpay</b> y su pedido estará confirmado.</h4>
                                     <br></br>
-                                    <div className = "button"></div>
-                                    <Button>Continuar a WEBPAY</Button>
+                                    <div className = "button">
+                                    <a href = "/"><Button>Continuar a WEBPAY</Button></a>
+                                    </div>
                                     <br></br>
-                                    <h4 className = "text-center">Una vez que realice el pago en Webpay, se enviará a su correo electronico una {boletaFactura} del pedido.</h4>
+                                    <h4 className = "text-center">Una vez que realice el pago en Webpay, se enviará a su correo electronico una <b>{boletaFactura}</b> del pedido.</h4>
                                     <br></br>
                                 </div>
                             </div>

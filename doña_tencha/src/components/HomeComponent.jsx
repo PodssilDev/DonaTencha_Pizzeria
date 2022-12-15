@@ -41,8 +41,8 @@ export default function Home(){
     return(
         <div>
             <GlobalStyle />
-            <NavbarComponent3 />
             <HomeStyle>
+            <NavbarComponent3 />
             <div className = "carrousel"></div>
             <Carrousel></Carrousel>
             <hr></hr>
@@ -62,7 +62,7 @@ export default function Home(){
                     <hr></hr>
                     <div className = "delivery">
                         <img src = {delivery} width = "30%" height = "30%" alt = "" ></img>
-                        <h1><b>Y si no puedes venir a retirar el pedido no te preocupes, ¡Te lo llevamos rapido!</b></h1>
+                        <h1><b>Y si no puedes venir a retirar el pedido no te preocupes, ¡Te lo llevamos rápido!</b></h1>
                     </div>
             </HomeStyle>
             <Footer> </Footer>

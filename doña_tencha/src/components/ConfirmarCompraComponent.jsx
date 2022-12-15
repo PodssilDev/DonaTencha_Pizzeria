@@ -90,9 +90,9 @@ export default function ConfirmarCompra(){
     return(
         
         <div>
-        <NavbarComponent3></NavbarComponent3>
         <GlobalStyle />
         <HomeStyle>
+        <NavbarComponent3/>
         <h1 className="text-center"> <b>Mi carrito de compras</b></h1>
         <h2 className = "text-center2"><u>Total a pagar: ${price}</u></h2>
         <div className = "separacion">
