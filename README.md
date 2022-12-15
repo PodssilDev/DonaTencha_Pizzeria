@@ -1,4 +1,4 @@
-# Técnicas de Ingeniería de Software PEP 3 2022-2: Frontent
+# Técnicas de Ingeniería de Software PEP 3 2022-2: Frontend
 
 * Autor: John Serrano
 * Sección: 13319-0-A-1
