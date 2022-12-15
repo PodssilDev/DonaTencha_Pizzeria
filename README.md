@@ -16,3 +16,6 @@ Se utilizan las siguientes herramientas principales para desarrollar el proyecto
 * [Visual Studio Code](https://code.visualstudio.com): IDE con multiples compatibilidades que sirve para poder desarrollar el código de React JS.
 
 **El nombre del local, Doña Tencha, está dedicado con mucho amor a Hortensia Serrano Barraza. Q.E.P.D.** ❤️
+
+![image](https://user-images.githubusercontent.com/91446330/207912290-748cae02-e942-460f-85be-2868b876d4ea.png)
+
