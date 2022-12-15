@@ -57,7 +57,7 @@ export default function CrearPizza(){
             <HomeStyle>
             <div className="mainclass">
                         <div className="form1">
-                            <h1 className="text-center"><b>¡Crea tu propia Pizza! Selecciona tus preferencias {masa}</b></h1>
+                            <h1 className="text-center"><b>¡Crea tu propia Pizza! Selecciona tus preferencias</b></h1>
                             <div className="formcontainer">
                                 <hr></hr>
                                 <div className="container">
