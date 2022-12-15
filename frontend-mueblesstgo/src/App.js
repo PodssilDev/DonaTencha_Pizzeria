@@ -13,6 +13,7 @@ import keycloak from './keycloak'
 import TestComponent from './components/TestComponent';
 import ConfirmarCompraComponent from './components/ConfirmarCompraComponent';
 import PagoComponent from './components/PagoComponent';
+import PedidoConfirmadoComponent from './components/PedidoConfirmadoComponent';
 function App() {
   return (
     <div>
@@ -30,6 +31,7 @@ function App() {
         <Route path= "/test" element={<TestComponent />} />
         <Route path= "/confirmar-compra" element={<ConfirmarCompraComponent />} />
         <Route path= "/pago" element={<PagoComponent />} />
+        <Route path= "/pedido-confirmado" element={<PedidoConfirmadoComponent />} />
 
       </Routes>
     </BrowserRouter>

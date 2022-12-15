@@ -14,6 +14,7 @@ import add_to_price from "./Carrito/add_to_price";
 import ConfirmarCardComponent from "./ConfirmarCardComponent";
 import remove_price from "../components/Carrito/remove_price";
 import Form from 'react-bootstrap/Form';
+import swal from 'sweetalert';
 
 export default function ConfirmarCompra(){
     const [show, setShow] = useState(false);
@@ -34,15 +35,59 @@ export default function ConfirmarCompra(){
         console.log(show2)
     }
 
+    const confirmarPago = ()=>{
+        swal({
+            title: "¿Proceder con la compra?",
+            text: "Asegurese que sus datos personales sean correctos",
+            icon: "warning",
+            buttons: ["Cancelar", "Confirmar"],
+            dangerMode: true
+        }).then(respuesta=>{
+            if(respuesta){
+                swal("Procediendo a la pantalla de pago", {icon: "success"});
+                window.location.href = "/pago";
+            }
+            else{
+                swal({text: "Se ha decido no continuar con la compra.", icon: "error"});
+            }
+        })
+    }
+
     const add = (id, nombre, descripcion, precio, img) =>{
-        setCart(add_to_cart({id, nombre, descripcion, precio, img}));
-        console.log(precio);
-        setPrice (add_to_price(precio));
+        swal({
+            title: "¿Está seguro de que desea agregar otra unidad del producto al carrito de compras?",
+            icon: "warning",
+            buttons: ["Cancelar", "Agregar"],
+            dangerMode: true
+        }).then(respuesta=>{
+            if(respuesta){
+                swal("Producto agregado al carrito de compras.", {icon: "success"});
+                setCart(add_to_cart({id, nombre, descripcion, precio, img}));
+                console.log(precio);
+                setPrice (add_to_price(precio));
+            }
+            else{
+                swal({text: "Producto no agregado al carrito de compras.", icon: "error"});
+            }
+        });
     }
 
     const remove_i = (id, precio) =>{
-        setCart(remove_from_cart(id, false));
-        setPrice(remove_price(precio));
+        swal({
+            title: "¿Está seguro de que desea eliminar una unidad del producto del carrito de compras?",
+            icon: "warning",
+            buttons: ["Cancelar", "Agregar"],
+            dangerMode: true
+        }).then(respuesta=>{
+            if(respuesta){
+                swal("Producto eliminado del carrito de compras.", {icon: "success"});
+                setCart(remove_from_cart(id, false));
+                setPrice(remove_price(precio));
+            }
+            else{
+                swal({text: "No se ha eliminado el producto del carrito de compras.", icon: "error"});
+            }
+        });
     }
 
     return(
@@ -104,13 +149,11 @@ export default function ConfirmarCompra(){
         <option>Av. Tingeso, 1312</option>
       </Form.Select>
       <br></br>
-      Su pedido estara listo en: {Math.round(Math.random()*100)} minutos
-                                        </Form.Group> <Button className="boton">Ir a pagar</Button> </> : null}
+                                        </Form.Group> <Button className="boton" onClick = {confirmarPago}>Ir a la pantalla de pago</Button> </> : null}
                                 {show2 == "despacho" ?            <><Form.Group className="mb-2" controlId="fecha">
                                         <Form.Label>Ingrese su dirección de despacho</Form.Label>
                                         <Form.Control type="fecha" placeholder="Ingrese su dirección de despacho"  required/>
-                                        Su pedido estará listo en: {Math.round(Math.random()*100)} minutos
-                                        </Form.Group><Button className="boton">Ir a pagar</Button> </> : null}
+                                        </Form.Group> <Button className="boton" onClick = {confirmarPago}>Ir a la pantalla de pago</Button> </> : null}
                                 
                             </div>
                         </div>

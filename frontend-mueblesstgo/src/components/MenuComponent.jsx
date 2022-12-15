@@ -11,6 +11,7 @@ import remove_cart from "../components/Carrito/remove_cart";
 import remove_from_cart from "../components/Carrito/remove_from_cart";
 import Product from "./ProductComponent";
 import add_to_price from "./Carrito/add_to_price";
+import swal from 'sweetalert';
 
 export default function Menu(){
 
@@ -19,8 +20,22 @@ export default function Menu(){
 
 
     const add = (id, nombre, descripcion, precio, img) =>{
-        setCart(add_to_cart({id, nombre, descripcion, precio, img}));
-        setPrice(add_to_price(precio));
+        swal({
+            title: "¿Está seguro de que desea agregar el producto al carrito de compras?",
+            icon: "warning",
+            buttons: ["Cancelar", "Agregar"],
+            dangerMode: true
+        }).then(respuesta=>{
+            if(respuesta){
+                swal("Producto agregado al carrito de compras.", {icon: "success"});
+                setCart(add_to_cart({id, nombre, descripcion, precio, img}));
+                setPrice(add_to_price(precio));
+                window.location.reload();
+            }
+            else{
+                swal({text: "Producto no agregado al carrito de compras.", icon: "error"});
+            }
+        });
     }
 
     const deleteCart = () =>{

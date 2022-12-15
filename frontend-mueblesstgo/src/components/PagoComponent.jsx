@@ -6,6 +6,11 @@ import NavbarComponent3 from "./NavbarComponent3";
 import Button from 'react-bootstrap/Button';
 import Footer from "../components/Footer";
 import Form from 'react-bootstrap/Form';
+import add_to_boleta_factura from "./Carrito/boleta_factura";
+import add_to_metodo_pago from "./Carrito/metodo_pago";
+import swal from 'sweetalert';
+import remove_cart from "./Carrito/remove_cart";
+import remove_price from "./Carrito/remove_price";
 
 export default function Pago(){
 
@@ -14,6 +19,32 @@ export default function Pago(){
     const[price, setPrice] = useState(localStorage.getItem("price") ? (localStorage.getItem("price")) : 0);
 
     const[siPropina, setPropina] = useState("0");
+
+    const[boletaFactura, setBoletaFactura] = useState("");
+
+    const[metodoPago, setMetodoPago] = useState("");
+
+    const handleEfectivo = () => {
+        setMetodoPago(add_to_metodo_pago("PAGO CON EFECTIVO"))
+    }
+
+    const handleTarjeta = () => {
+        setMetodoPago(add_to_metodo_pago("PAGO CON TARJETA"))
+    }
+
+    const handleWebpay = () => {
+        setMetodoPago(add_to_metodo_pago("PAGO CON WEBPAY"))
+    }
+
+    const handleBoleta = () => {
+        setBoletaFactura(add_to_boleta_factura("BOLETA"));
+    }
+
+    const handleFactura = () => {
+        setBoletaFactura(add_to_boleta_factura("FACTURA"));
+    }
+
+
 
     const handleChange1 = () => {
         setPropina("5");
@@ -26,9 +57,31 @@ export default function Pago(){
     const handleChange3 = () => {
         setPropina("0");
     }
+
+    const pagarCompra = () =>{
+        swal({
+            title: "¿Está seguro que quiere pagar su pedido",
+            text: "¡No podrá deshacer esta acción!",
+            icon: "warning",
+            buttons: ["Cancelar", "Confirmar"],
+            dangerMode: true
+        }).then(respuesta => {
+            if(respuesta){
+                swal("¡Su pedido ha sido pagado!",  {icon: "success"})
+                setCart(remove_cart());
+                setPrice(remove_price());
+                localStorage.removeItem("propina");
+                window.location.href = "/pedido-confirmado";
+            }
+            else{
+                swal("¡Su pedido no ha sido pagado!",  {icon: "error"})
+            }
+        })
+    }
     return(
         <div>
         <NavbarComponent3></NavbarComponent3>
+        <GlobalStyle/>
         <Styles>
 
 <div className="mainclass">
@@ -49,14 +102,14 @@ export default function Pago(){
                                         <img src = "https://www.thedreamauctions.com/wp-content/uploads/2022/02/webpay-logo.png" height = "20px" width = "30px"></img>
                                         <Form.Group className="mb-3" controlId="fecha">
                                     <Form.Label>Seleccione su método de pago:</Form.Label> <br></br>
-                                            <Form.Check type="radio" label="Pago en efectivo" name="formHorizontalRadis" id="formHorizontalRadios1"/>
-                                            <Form.Check type="radio" label="Pago con tarjeta" name="formHorizontalRadis" id="formHorizontalRadios2"/>
-                                            <Form.Check type="radio" label="Pago con WEBPAY" name="formHorizontalRadis" id="formHorizontalRadios3"/>
+                                            <Form.Check type="radio" label="Pago con efectivo" name="formHorizontalRadis" id="formHorizontalRadios1" onChange = {handleEfectivo}/>
+                                            <Form.Check type="radio" label="Pago con tarjeta" name="formHorizontalRadis" id="formHorizontalRadios2" onChange = {handleTarjeta}/>
+                                            <Form.Check type="radio" label="Pago con WEBPAY" name="formHorizontalRadis" id="formHorizontalRadios3" onChange = {handleWebpay}/>
                                         </Form.Group>
                                         <Form.Group className = "mb-3" controlId = "fecha">
                                             <Form.Label>¿Desea recibir boleta o factura en su correo?</Form.Label> <br></br>
-                                            <Form.Check type="radio" label="Boleta" name="formHorizontalRadi" id="formHorizontalRadios1"/>
-                                            <Form.Check type="radio" label="Factura" name="formHorizontalRadi" id="formHorizontalRadios2"/>
+                                            <Form.Check type="radio" label="Boleta" name="formHorizontalRadi" id="formHorizontalRadios1" onChange = {handleBoleta}/>
+                                            <Form.Check type="radio" label="Factura" name="formHorizontalRadi" id="formHorizontalRadios2" onChange = {handleFactura}/>
                                         </Form.Group>
                                     </Form>
                                 </div>
@@ -76,7 +129,7 @@ export default function Pago(){
                                     <h6> <b>Total a pagar: ${price}</b></h6>
                                     </>
 }
-                                <Button className="boton" onClick>Pagar la compra</Button>
+                                <Button className="boton" onClick = {pagarCompra}>Pagar la compra</Button>
                                 </div>
                             </div>
                         </div>
@@ -88,6 +141,11 @@ export default function Pago(){
                         
     )
 }
+
+const GlobalStyle = createGlobalStyle`
+    body { 
+        background-color: #CD6155;
+`
 
 const Styles = styled.div`
 .text-center {

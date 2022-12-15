@@ -44,7 +44,7 @@ const HomeStyle = styled.nav`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 360px;
+    width: 350px;
     height: 360px;
     border-radius: 4px;
     background-color: #fff;

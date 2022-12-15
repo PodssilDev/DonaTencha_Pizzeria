@@ -11,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 import sinProductos from "../imgs/sinProductos.png";
 import add_to_price from "../components/Carrito/add_to_price";
 import remove_price from "../components/Carrito/remove_price";
+import swal from 'sweetalert';
 
 export default function NavbarComponent3(){
   const [show, setShow] = useState(false);
@@ -21,14 +22,40 @@ export default function NavbarComponent3(){
     const[price, setPrice] = useState(localStorage.getItem("price") ? (localStorage.getItem("price")) : 0);
 
     const add = (id, nombre, descripcion, precio, img) =>{
-        setCart(add_to_cart({id, nombre, descripcion, precio, img}));
-        console.log(precio);
-        setPrice (add_to_price(precio));
+      swal({
+        title: "¿Está seguro de que desea agregar otra unidad del producto al carrito de compras?",
+        icon: "warning",
+        buttons: ["Cancelar", "Agregar"],
+        dangerMode: true
+    }).then(respuesta=>{
+        if(respuesta){
+            swal("Producto agregado al carrito de compras.", {icon: "success"});
+            setCart(add_to_cart({id, nombre, descripcion, precio, img}));
+            console.log(precio);
+            setPrice (add_to_price(precio));
+        }
+        else{
+            swal({text: "Producto no agregado al carrito de compras.", icon: "error"});
+        }
+    });
     }
 
     const remove_i = (id, precio) =>{
-        setCart(remove_from_cart(id, false));
-        setPrice(remove_price(precio));
+      swal({
+        title: "¿Está seguro de que desea eliminar una unidad del producto del carrito de compras?",
+        icon: "warning",
+        buttons: ["Cancelar", "Agregar"],
+        dangerMode: true
+    }).then(respuesta=>{
+        if(respuesta){
+            swal("Producto eliminado del carrito de compras.", {icon: "success"});
+            setCart(remove_from_cart(id, false));
+            setPrice(remove_price(precio));
+        }
+        else{
+            swal({text: "No se ha eliminado el producto del carrito de compras.", icon: "error"});
+        }
+    });
     }
     
 

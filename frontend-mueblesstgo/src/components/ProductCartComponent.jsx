@@ -17,6 +17,7 @@ export default function ProductCart({id, img, nombre, descripcion, precio, canti
                     <br></br>
                     <button varian="primary" onClick={add}>+1 unidad </button>
                     <br></br>
+                    <br></br>
                     <button varian="primary" onClick={remove_item}>-1 unidad</button>
                     
                     
@@ -49,7 +50,7 @@ const HomeStyle = styled.nav`
     align-items: center;
     justify-content: center;
     width: 300px;
-    height: 360px;
+    height: 370px;
     border-radius: 4px;
     background-color: #fff;
     text-align: center;
