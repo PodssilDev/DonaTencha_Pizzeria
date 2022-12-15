@@ -5,7 +5,6 @@ import { createGlobalStyle } from 'styled-components'
 import NavbarComponent3 from "./NavbarComponent3";
 import Button from 'react-bootstrap/Button';
 import Footer from "../components/Footer";
-import Form from 'react-bootstrap/Form';
 
 export default function Confirmacion(){
     const[boletaFactura, setBoletaFactura] = useState(localStorage.getItem("boleta_factura") ? (localStorage.getItem("boleta_factura")) : "");

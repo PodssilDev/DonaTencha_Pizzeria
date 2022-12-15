@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../imgs/logo.png"
 import {useState, useEffect} from "react";
 import {Drawer} from "@mui/material"
 import add_to_cart from "../components/Carrito/add_to_cart";
-import remove_cart from "../components/Carrito/remove_cart";
 import remove_from_cart from "../components/Carrito/remove_from_cart";
 import ProductCartComponent from "./ProductCartComponent";
 import Button from 'react-bootstrap/Button';
