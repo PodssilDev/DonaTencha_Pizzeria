@@ -4,24 +4,39 @@ import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components'
 import productos from "./jsons/products.json";
 import NavbarComponent3 from "./NavbarComponent3";
-import Button from 'react-bootstrap/Button';
-import logo from "../imgs/logo.png"
 import Carrousel from "../components/Carrousel";
 import delivery from "../imgs/delivery.png";
 import Footer from "../components/Footer";
 import Product from "./ProductComponent";
 import add_to_cart from "../components/Carrito/add_to_cart";
+import add_to_price from "./Carrito/add_to_price";
+import swal from 'sweetalert';
 
 export default function Home(){
 
     const [cart, setCart] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []);
+    const[price, setPrice] = useState(localStorage.getItem("price") ? (localStorage.getItem("price")) : 0);
 
     const add = (id, nombre, descripcion, precio, img) =>{
-        console.log(cart)
-        console.log(nombre)
-        setCart(add_to_cart({id, nombre, descripcion, precio, img}));
-        console.log(cart);
+        swal({
+            title: "¿Está seguro de que desea agregar el producto al carrito de compras?",
+            icon: "warning",
+            buttons: ["Cancelar", "Agregar"],
+            dangerMode: true
+        }).then(respuesta=>{
+            if(respuesta){
+                swal("Producto agregado al carrito de compras.", {icon: "success"});
+                setCart(add_to_cart({id, nombre, descripcion, precio, img}));
+                setPrice(add_to_price(precio));
+                window.location.reload();
+            }
+            else{
+                swal({text: "Producto no agregado al carrito de compras.", icon: "error"});
+            }
+        });
     }
+
+
 
     return(
         <div>
@@ -52,7 +67,6 @@ export default function Home(){
             </HomeStyle>
             <Footer> </Footer>
             </div>
-
     )
 }
 

@@ -70,7 +70,7 @@ export default function NavbarComponent3(){
                 </div>
                 <a class="btn" href="/"><button>Homepage</button></a>
                 <a class="btn" href="/menu"><button>Menú</button></a>
-                <a class="btn" href="/"><button>Arma tu Pizza</button></a>
+                <a class="btn" href="/crear-pizza"><button>Arma tu Pizza</button></a>
                 <Button onClick= {() => setShow(true)}>Mi carrito
                 <img src = "https://cdn-icons-png.flaticon.com/512/107/107831.png" height={"25px"}></img></Button>
                 <Drawer anchor = "left" open = {show} onClose = {() => setShow(false)}>

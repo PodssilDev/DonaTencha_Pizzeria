@@ -14,6 +14,7 @@ import TestComponent from './components/TestComponent';
 import ConfirmarCompraComponent from './components/ConfirmarCompraComponent';
 import PagoComponent from './components/PagoComponent';
 import PedidoConfirmadoComponent from './components/PedidoConfirmadoComponent';
+import CrearPizzaComponent from './components/CrearPizzaComponent';
 function App() {
   return (
     <div>
@@ -32,6 +33,8 @@ function App() {
         <Route path= "/confirmar-compra" element={<ConfirmarCompraComponent />} />
         <Route path= "/pago" element={<PagoComponent />} />
         <Route path= "/pedido-confirmado" element={<PedidoConfirmadoComponent />} />
+        <Route path= "/crear-pizza" element={<CrearPizzaComponent />} />
+
 
       </Routes>
     </BrowserRouter>
