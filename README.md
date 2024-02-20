@@ -1,12 +1,7 @@
-# Técnicas de Ingeniería de Software PEP 3 2022-2: Frontend
-
-* Autor: John Serrano
-* Sección: 13319-0-A-1
-* Profesor: Alcides Quispe
-* Calificación luego de la evaluación: 7.0/7.0
+# Doña Tencha: Frontend con React JS
 
 ## Descripción
-En este repositorio se encuentra el Frontend de la aplicación desarrollada para la PEP 3 de Técnicas de Ingeniería de Software en 2022. Esta vez, la aplicación no tiene Backend y solamente tiene Frontend, el cual fue desarrollado utilizando [React JS](https://reactjs.org).
+En este repositorio se encuentra el Frontend de la aplicación web desarrollada para la pizzería ficticia "Doña Tencha". El Frontend fue desarrollado utilizando [React JS](https://reactjs.org) y tiene multiples opciones. Incluye un carrito de compra y es completamente funcional sin Backend.
 
 ## Herramientas utilizadas
 
